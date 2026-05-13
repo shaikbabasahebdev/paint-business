@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+  --color-ink: #0f0a05;
+  --color-cream: #f5ede0;
+  --color-orange: #f97316;
+  --color-amber: #d97706;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-cream);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #0a0703; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #f97316, #fbbf24);
+  border-radius: 99px;
+}
+
+.font-display {
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+/* Richer, more vivid gradient text */
+.gradient-text {
+  background: linear-gradient(125deg, #f97316 0%, #fbbf24 50%, #fb923c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Section eyebrow label with decorative leading line */
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #f97316;
+  margin-bottom: 0.85rem;
+}
+.section-eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 2px;
+  background: linear-gradient(90deg, #f97316, #fbbf24);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* Card hover with subtle orange glow */
+.card-glow {
+  transition: box-shadow 0.35s ease, border-color 0.35s ease, transform 0.25s ease;
+}
+.card-glow:hover {
+  box-shadow: 0 0 40px rgba(249, 115, 22, 0.14), 0 4px 24px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Gradient horizontal divider */
+.divider-glow {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.45), transparent);
+  margin: 0;
+}
+
+/* Stat counter highlight ring */
+.stat-ring {
+  position: relative;
+}
+.stat-ring::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%);
+}
+
+.grain-overlay::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.25;
+}
+
+@layer utilities {
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-400 { animation-delay: 400ms; }
+  .animate-delay-500 { animation-delay: 500ms; }
+
+  .opacity-0-init { opacity: 0; }
+}
+
+.section-padding {
+  @apply px-6 md:px-12 lg:px-20 py-20 md:py-28;
+}
+
+.paint-brush-line {
+  position: relative;
+}
+
+.paint-brush-line::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #f97316, #fbbf24, #f97316);
+  border-radius: 2px;
+}
+
+/* Glowing orange button */
+.btn-primary {
+  @apply flex items-center gap-2 px-7 py-3.5 bg-orange-500 hover:bg-orange-400 text-white font-semibold rounded-sm transition-all duration-200;
+  box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
+}
+.btn-primary:hover {
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+}
+
+/* Ghost button */
+.btn-ghost {
+  @apply flex items-center gap-2 px-7 py-3.5 text-[#f5ede0]/80 hover:text-orange-300 font-medium rounded-sm transition-all duration-200;
+  background: rgba(255, 255, 255, 0.07);
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
